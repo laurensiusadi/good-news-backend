@@ -1,7 +1,7 @@
 package server
 
 import (
-	
+	"github.com/laurensiusadi/good-news-backend/utils"
 )
 
 // Init <function>

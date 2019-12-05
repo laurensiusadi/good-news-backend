@@ -3,6 +3,8 @@ package server
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/laurensiusadi/good-news-backend/controllers"
+	"github.com/laurensiusadi/good-news-backend/utils"
 )
 
 // NewRouter <function>
@@ -11,9 +13,9 @@ func NewRouter() *gin.Engine {
 	var envVars = utils.GetEnvVars()
 
 	if envVars.DebugMode {
-		gin.setMode(gin.DebugMode)
+		gin.SetMode(gin.DebugMode)
 	} else {
-		gin.setMode(gin.ReleaseMdde)
+		gin.SetMode(gin.ReleaseMode)
 	}
 
 	router := gin.New()
@@ -21,7 +23,7 @@ func NewRouter() *gin.Engine {
 	// middlewares
 	router.Use(gin.Recovery())
 	router.Use(gin.Logger())
-	router.User(cors.Default())
+	router.Use(cors.Default())
 
 	// static files serving
 	router.Static("/images", "./images")
